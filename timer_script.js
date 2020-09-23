@@ -1,11 +1,11 @@
 
 function getTimeRemaining(endtime) { 
-	var t= Date.parse(endtime) - Date.parse(new Date());
+	var t = Date.parse(endtime) - Date.parse(new Date());
 	var seconds = Math.floor((t/1000)%60);
 	var minutes = Math.floor(t/(1000*60)%60);
-	var hours = Math.floor(t/(1000*60*60)%60);
+	var hours = Math.floor(t/(1000*60*60)%24);
 	var days = Math.floor(t/(1000*60*60*24));
-   
+  
 
 	return {
 		"total"  : t,
@@ -30,7 +30,8 @@ function initializeClock (id,endtime) {
 		minutesSpan.innerHTML = ('0' + p.minutes).slice(-2);
 		secondsSpan.innerHTML = ('0' + p.seconds).slice(-2);
 	if (p.total <= 0) {
-		clearInterval (timeinterval);
+		
+        clearInterval(timeinterval);
 		}
 	}
 	updateClock();
