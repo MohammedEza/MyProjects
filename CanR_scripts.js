@@ -15,12 +15,17 @@ $(canvas).on('mousedown', function(e) {
     last_mousex = parseInt(e.clientX-canvasx);
 	last_mousey = parseInt(e.clientY-canvasy);
     mousedown = true;
+    
 });
 
 
 $(canvas).on('mouseup', function(e) {
     endx = parseInt(e.clientX-canvasx);
-	endy = parseInt(e.clientY-canvasy)
+    endy = parseInt(e.clientY-canvasy)
+    ctx.fillText(" ("+endx+", "+endy+")", endx+5, endy);
+    ctx.fillText(" ("+(last_mousex+width)+", "+last_mousey+")", last_mousex-10+(width), last_mousey-14);
+    
+    ctx.fillText(" ("+last_mousex+", "+(last_mousey+height)+")", last_mousex-5 , last_mousey+height+15);
     mousedown = false;
 });
 
@@ -31,6 +36,7 @@ $(canvas).on('mousemove', function(e) {
     if(mousedown) {
         ctx.clearRect(0,0,canvas.width,canvas.height); //clear canvas
         ctx.beginPath();
+        ctx.fillText(" ("+last_mousex+", "+last_mousey+")", last_mousex-10, last_mousey-15);
         width = mousex-last_mousex;
         height = mousey-last_mousey;
         ctx.rect(last_mousex,last_mousey,width,height);
