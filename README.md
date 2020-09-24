@@ -1,2 +1,1 @@
-Welcome to my Remote Repo. 
-Check out different branches to see my projects.
+This is a webpage that hosts a quiz and displays the final score. 
