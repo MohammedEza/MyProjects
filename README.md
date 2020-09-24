@@ -1,2 +1,2 @@
 Welcome to my Remote Repo. 
-Check out different branched to see my projects.
+Check out different branches to see my projects.
