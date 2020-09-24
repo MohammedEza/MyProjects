@@ -1,2 +1,1 @@
-Welcome to my Remote Repo. 
-Check out different branches to see my projects.
+This webpage allows user to draw any shapes with mouse.
