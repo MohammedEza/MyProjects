@@ -9,7 +9,18 @@
 	</head>
 	<body>
 		<h1> Countdown Clock </h1>
+		<div>
+			<form style="display: inline-block;">
+				Days <input id ="cdays" type="Number" value ="0">
+				Hours <input id ="chours"  type ="Number"value ="0">
+				Minutes <input id ="cminutes"  type = "number"value ="0">
+				Seconds <input id ="cseconds"  type = "number"value ="0">
+			</form>
+			
+		</div>
+		
 		<div id ="clockdiv">
+			
 			<div>
 				<span class = "days"></span>
 				<div class="smalltext">Days</div>	
@@ -27,7 +38,7 @@
 				<div class="smalltext">Seconds</div>	
 			</div> <br>
 			<br><button>START</button>
-			<input type="button" value="RESET TIMER" onClick="document.location.reload(true)">
+			<input id = "reset" type="button" value="RESET TIMER" onClick="document.location.reload(true)">
 		</div>
 		<script src = "timer_script.js">  </script>
 	</body>

@@ -41,15 +41,18 @@ button {
 	display: block;
 	width: 100px;
 	height: 100px;
-	margin: 20px auto 10px;
+	margin: 0px auto 10px;
 	border-radius: 5px;
 	color: white;
 	background-color: black;
 }
-input{
+#reset{
 	display: block;
-	margin: 20px auto 10px;
+	margin: 10px auto 10px;
 	border-radius: 5px;
 	color: white;
 	background-color: red;
+}
+form {
+	margin:10px auto 20px;
 }

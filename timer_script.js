@@ -46,10 +46,10 @@ function initializeClock (id,endtime) {
 function Start(){
 	buttoncl.textContent = "Ticking......"
 	
- var udays = window.prompt("Please enter number of days");
- var uhours = window.prompt("Please enter number of hours");
- var uminutes = window.prompt("Please enter number of minutes");
- var useconds = window.prompt("Please enter number of seconds");
+ var udays = document.getElementById('cdays').value; 
+ var uhours = document.getElementById('chours').value;
+ var uminutes = document.getElementById('cminutes').value;
+ var useconds = document.getElementById('cseconds').value;
 var calcms = ((udays*24*60*60*1000)+(uhours*60*60*1000)+(uminutes*60*1000)+(useconds*1000));
 //console.log(calcms);
 var deadline = new Date(Date.parse(new Date())+ calcms)
