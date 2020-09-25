@@ -1,0 +1,142 @@
+html{
+    
+    font-family: "Playfair Display";
+}
+h1,h2,h3,h4,h5,h6{
+    letter-spacing: 5px;;
+}
+body {
+    margin:0;
+    font-family: 'Times New Roman', Times, serif;
+}
+.scroll {
+    position:fixed;
+    top:0px;
+    width:100%;
+    background-color:#FFFFFF ;
+    box-shadow: 1px 2px 3px  #BDBDBD    ;
+    z-index: 30;
+    letter-spacing: 2px;
+    
+    
+}
+.scroll a {
+    display:block;
+    color:black;
+    text-align:center;
+    text-decoration:none;
+    font-size: 15px;
+    margin:5px 10px;
+}
+.scroll a:visited{
+    color:black;
+}
+#M{ 
+    float:left;
+    padding: 12px;
+
+}
+#C,#Me,#A{
+    float:right;
+    padding:12px;
+    margin:5px 0px;
+}
+.scroll a:hover{
+    background : #9A9998 ;
+}
+#C{
+    margin:5px 20px 5px 0px;
+}
+#imagecontainer > #textoverimage {
+    color:#656565   ;
+    position:relative;
+    bottom: 120px;
+    left: 20px;
+    font-size: 40px;
+    letter-spacing: 2px;;
+}
+#main{
+    width:105%;
+}
+
+#about{
+   clear: both;
+    margin:30px;
+    display:block;
+    width:70%;
+    margin: 10px auto;
+    
+}
+
+ #aboutimage{
+    width:40%;
+    margin:50px 30px;
+    float:left;
+}
+
+#aboutpara{
+    
+    margin:50px auto;
+    float:left;
+    width:50%;
+    text-align: left;
+    line-height: 25px;
+    letter-spacing: 2px;
+    
+} 
+
+
+#menustyle{
+    clear: both;
+    margin:30px;
+    display:block;
+    width:70%;
+    margin: 10px auto;
+    
+}
+
+#menuimage{
+    
+    margin:75px 30px;
+    float:right;
+}
+
+#menupara{
+    display:block;
+    margin:120px auto;
+
+    float:right;
+   
+    
+}
+
+
+#menupara > p {
+    color : #989898 ;
+    padding: 0px 0px 30px;
+}
+#menupara > h3 {
+    font-family: 'Times New Roman', Times, serif;
+}
+#contact{
+    clear:both;
+    width:70%;
+    margin : 100px auto;
+    
+}
+input {
+    margin: 30px 25px;
+    padding: 15px 5px;
+    color : #DEDEDE;
+}
+footer{
+    clear:both;
+    text-align: center;;
+    display :block;
+    background-color: #EAEAEA;
+    padding: 40px;
+    
+    margin:0px;
+    width:100%
+}
+
