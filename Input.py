@@ -1,0 +1,7 @@
+person = input("Enter your name:")
+age =input("Enter your age")
+print("Hello", person,"Your age is",age)
+x = input("Input a Number")
+y = input("Input a Number")
+z = int(x)+int(y)
+print(z)
