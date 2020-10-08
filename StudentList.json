@@ -1,0 +1,32 @@
+[
+  {
+    "Name": "Mohammed Eza",
+    "Age": 15,
+    "Class": 10,
+    "Adress": "PO Box 689695"
+  },
+  {
+    "Name": "Aravindan",
+    "Age": 13,
+    "Class": 8,
+    "Adress": "PO Box 222782"
+  },
+  {
+    "Name": "Madhavan Nair",
+    "Age": 12,
+    "Class": 7,
+    "Adress": "PO Box 888782"
+  },
+  {
+    "Name": "Ravi Singh",
+    "Age": 17,
+    "Class": 9,
+    "Adress": "PO Box 111999"
+  },
+  {
+    "Name": "Ragam Elias",
+    "Age": 16,
+    "Class": 10,
+    "Adress": "PO Box 789321"
+  }
+]
