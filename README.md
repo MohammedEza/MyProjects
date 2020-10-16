@@ -1,2 +1,1 @@
-Welcome to my Remote Repo. 
-Check out different branches to see my projects.
+A webpage for adding and managing teachers, students, and classes in a school.
