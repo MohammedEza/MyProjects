@@ -1,0 +1,17 @@
+{% extends 'schoollist\base.html' %}
+
+{% block tables %}
+<div style="width:25%; margin:auto;">
+    Teacher Name: {{teacher.name}}
+    <br>
+    Age: {{teacher.age}}
+    <br>
+    Qualification: {{teacher.qualification}}
+    <br>
+    Phone Number: {{teacher.phone}}
+    <br>
+    <br>
+    Photo:  <img src ="{{ teacher.image.url }}" alt="didnt load" height="200" width="200">
+
+</div>
+{% endblock %}

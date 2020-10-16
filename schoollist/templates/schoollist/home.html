@@ -1,0 +1,173 @@
+
+{% extends 'schoollist\base.html' %}
+
+
+
+
+{% block tables %}
+<br>
+<h5 style = "margin:10px 10px;"> Hello, {{user}} </h5>
+
+<br>
+<br>
+
+<div id="T+S" style = "padding: 0px 50px 0px 100px">
+<div id="teachers" style = "float:left;">
+    <h6>Teachers</h6>
+    <div style="display:block;  height: 300px; overflow: scroll;">
+        <table style="width:100%;border: 1px solid black;">
+             <tr style="border: 1px solid black;" >
+            <th style="border: 1px solid black;">Name</th>
+            <th style="border: 1px solid black;">Age</th>
+            <th style="border: 1px solid black;">Qualification</th>
+            <th style="border: 1px solid black;">Phone Number</th>
+             </tr>
+            {% for teacher in teachers %}
+             <tr style="border: 1px solid black;" >
+            <td style="border: 1px solid black;">{{teacher.name}}</td>
+            <td style="border: 1px solid black;">{{teacher.age}}</td>
+            <td style="border: 1px solid black;">{{teacher.qualification}}</td>
+            <td style="border: 1px solid black;">{{teacher.phone}}</td>
+                 <td style="border: 1px solid black;">
+
+                     <a href = '{% url "image" teacher.id %}'>
+                         View Image
+                     </a>
+                 </td>
+                 <td style="border: 1px solid black;">
+
+                     <a href = '{% url "teacher_detail" teacher.id %}'>
+                         View Details
+                     </a>
+
+                 </td>
+                 <td style="border: 1px solid black;">
+                <a href = '{% url "teacher_update" teacher.id %}'>
+                         Update
+                     </a>
+                 </td>
+                 <td style="border: 1px solid black;">
+                     <a href = '{% url "teacher_delete" teacher.id %}'>
+                         Delete
+                     </a>
+
+                 </td>
+             </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+        <a href = "{% url 'teacher_form' %}">
+            <button>ADD</button>
+        </a>
+    <a href = "{% url 'teacher_deleteall' %}">
+            <button>Delete All</button>
+        </a>
+    <br>
+    <br>
+    <form method = 'POST' action = '{% url "index" %}'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type = "submit"> Search & Sort</button>
+    </form>
+</div>
+
+<div id="students" style = "float:right;">
+    <h6>Students</h6>
+    <div style="display:block; height: 300px; overflow: scroll;">
+    <table style="width:100%;border: 1px solid black;">
+         <tr style="border: 1px solid black;" >
+        <th style="border: 1px solid black;">Name</th>
+        <th style="border: 1px solid black;">Age</th>
+        <th style="border: 1px solid black;">Class</th>
+        <th style="border: 1px solid black;">Phone Number</th>
+             <th style="border: 1px solid black;">Address</th>
+         </tr>
+    {% for student in students %}
+             <tr style="border: 1px solid black;" >
+            <td style="border: 1px solid black;">{{student.name}}</td>
+            <td style="border: 1px solid black;">{{student.age}}</td>
+            <td style="border: 1px solid black;">{{student.grade}}</td>
+            <td style="border: 1px solid black;">{{student.phone}}</td>
+                 <td style="border: 1px solid black;">{{student.address}}</td>
+                 <td style="border: 1px solid black;">
+
+                     <a href = '{% url "student_detail" student.id %}'>
+                         View Details
+                     </a>
+
+                 </td>
+                 <td style="border: 1px solid black;">
+                <a href = '{% url "student_update" student.id %}'>
+                         Update
+                     </a>
+                 </td>
+                 <td style="border: 1px solid black;">
+                     <a href = '{% url "student_delete" student.id %}'>
+                         Delete
+                     </a>
+                 </td>
+             </tr>
+            {% endfor %}
+    </table>
+    </div>
+    <div id = "buttons" style="float:right;">
+    <a href = "{% url 'student_form' %}">
+            <button>ADD</button>
+        </a>
+    <a href = "{% url 'student_deleteall' %}">
+            <button>Delete All</button>
+        </a>
+    </div>
+    </div>
+</div>
+<br>
+<br>
+<div id="class" style = "clear:both; width:50%; margin: auto;">
+    <h6>Class</h6>
+    <div style="display:block; width:50%; height: 300px; overflow: scroll; ">
+    <table style="width:100%;border: 1px solid black;">
+         <tr style="border: 1px solid black;" >
+        <th style="border: 1px solid black;">Class</th>
+        <th style="border: 1px solid black;">Section</th>
+        <th style="border: 1px solid black;">Teacher</th>
+         </tr>
+
+
+    {% for class in classes %}
+        <tr style="border: 1px solid black;">
+        <td style="border: 1px solid black;">{{class.grade}}</td>
+        <td style="border: 1px solid black;">{{class.section}}</td>
+        <td style="border: 1px solid black;">{{class.teacher}}</td>
+            <td style="border: 1px solid black;">
+
+                    <a href = '{% url "class_detail" class.id %}'>
+                         View Details
+                     </a>
+            </td>
+            <td style="border: 1px solid black;">
+                <a href = '{% url "class_update" class.id %}'>
+                         Update
+                     </a>
+                 </td>
+            <td style="border: 1px solid black;">
+                <a href = '{% url "class_delete" class.id %}'>
+                         Delete
+                     </a>
+                 </td>
+         </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+
+    <a href = "{% url 'class_form' %}">
+            <button>ADD</button>
+        </a>
+    <a href = "{% url 'class_deleteall' %}">
+            <button>Delete All</button>
+        </a>
+</div>
+
+{% endblock %}

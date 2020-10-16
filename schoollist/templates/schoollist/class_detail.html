@@ -1,0 +1,11 @@
+{% extends 'schoollist\base.html' %}
+
+{% block tables %}
+<div style="width:25%; margin:auto;">
+    Class: {{class.grade}}
+    <br>
+    Section: {{class.section}}
+    <br>
+    Teacher: <a href ='{% url "teacher_detail" class.teacher_id %}'> {{class.teacher}} </a>
+</div>
+{% endblock %}

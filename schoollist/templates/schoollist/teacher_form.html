@@ -1,0 +1,11 @@
+{% extends 'schoollist/base.html' %}
+
+{% block tables %}
+<form method = 'POST' action = '{% url "teacher_form" %}' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type = "submit"> ADD </button>
+
+
+</form>
+{% endblock %}
