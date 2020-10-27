@@ -1,11 +1,44 @@
 {% extends 'schoollist/base.html' %}
 
 {% block tables %}
-<form method = 'POST' action = '{% url "student_form" %}'>
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type = "submit"> ADD </button>
+
+<div style="padding: 10px;">
+    <a href = "{% url 'studenttable' %}">
+        <button type="button" class="btn btn-dark">Go Back</button>
+    </a>
+</div>
+<div style="width:50%; margin:auto;">
+
+    <form method = 'POST' action = '{% url "student_form" %}'>
+        {% csrf_token %}
+        <table style="width:100%;">
+            <tr>
+                <th colspan="2">Enter New Student Details</th>
+            </tr>
+            <tr>
+                <td>Name</td><td>{{form.name}}</td>
+            </tr>
+            <tr>
+                <td>Age</td><td>{{form.age}}</td>
+            </tr>
+            <tr>
+                <td>Class</td><td>{{form.grade}}</td>
+            </tr>
+            <tr>
+                <td>Phone</td><td>{{form.phone}}</td>
+            </tr>
+            <tr>
+                <td>Address</td><td>{{form.address}}</td>
+            </tr>
+
+        </table>
+        <div class="buttons">
+            <button style="width:100%;" type="submit" class="btn btn-primary">ADD</button>
+        </div>
 
 
-</form>
+    </form>
+</div>
 {% endblock %}
+
+

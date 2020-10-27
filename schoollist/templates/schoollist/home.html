@@ -1,173 +1,213 @@
-
 {% extends 'schoollist\base.html' %}
+
+<!--
+<form method = 'POST' action = '{% url "index" %}' style="float:right; margin:10px 10px; ">
+    {% csrf_token %}
+    {{form.search}}
+    {{form.sort}}
+    <button type="Submit" class="btn btn-light">Search</button>
+    </form>
+    -->
+
+
+
 
 
 
 
 {% block tables %}
 <br>
-<h5 style = "margin:10px 10px;"> Hello, {{user}} </h5>
+<div id = "navbar">
+    <div style="float: left ;"> <h5 style = "margin:10px 10px;"> Hello, {{user}} </h5></div>
+    <a style = "color:red;" href ="{% url 'logout' %}">
+        <div style="float: right ;"><h5 style = "margin:10px 10px;">Logout</h5></div>
+    </a>
+
+</div>
 
 <br>
 <br>
+<div style="text-align:center;">
+    <h3 style = "margin:40px 10px;">Welcome to ABC School Management Portal</h3>
+    <h6>Click to view</h6>
+    <div style = "margin:40px 10px;">
+        <a style="text-decoration:none;" href="{% url 'teachertable' %}">
+            <button type="button" class="btn btn-primary">Teachers</button>
+        </a>
+        <a style="text-decoration:none;" href="{% url 'studenttable' %}">
+            <button type="button" class="btn btn-primary">Students</button>
+        </a>
+        <a style="text-decoration:none;" href="{% url 'classtable' %}">
+            <button type="button" class="btn btn-primary">Classes</button>
+        </a>
+    </div>
 
-<div id="T+S" style = "padding: 0px 50px 0px 100px">
-<div id="teachers" style = "float:left;">
-    <h6>Teachers</h6>
-    <div style="display:block;  height: 300px; overflow: scroll;">
-        <table style="width:100%;border: 1px solid black;">
-             <tr style="border: 1px solid black;" >
-            <th style="border: 1px solid black;">Name</th>
-            <th style="border: 1px solid black;">Age</th>
-            <th style="border: 1px solid black;">Qualification</th>
-            <th style="border: 1px solid black;">Phone Number</th>
+</div>
+
+<!-- <div id="teachers" >
+    <h5>Teachers Table</h5>
+    <div >
+        <table>
+             <tr  >
+            <th >Name</th>
+            <th >Age</th>
+            <th>Qualification</th>
+            <th >Phone Number</th>
+
              </tr>
             {% for teacher in teachers %}
-             <tr style="border: 1px solid black;" >
-            <td style="border: 1px solid black;">{{teacher.name}}</td>
-            <td style="border: 1px solid black;">{{teacher.age}}</td>
-            <td style="border: 1px solid black;">{{teacher.qualification}}</td>
-            <td style="border: 1px solid black;">{{teacher.phone}}</td>
-                 <td style="border: 1px solid black;">
+             <tr  >
+            <td style="text-align:left;">{{teacher.name}} <br>
+                <div class = "actionbuttons">
 
-                     <a href = '{% url "image" teacher.id %}'>
-                         View Image
-                     </a>
-                 </td>
-                 <td style="border: 1px solid black;">
+                         <a href = '{% url "image" teacher.id %}'>
+                             View Image
+                         </a>
+                            |
+                         <a href = '{% url "teacher_detail" teacher.id %}'>
+                             View Details
+                         </a>
+                            |
+                    <a href = '{% url "teacher_update" teacher.id %}'>
+                             Update
+                         </a>
+                            |
 
-                     <a href = '{% url "teacher_detail" teacher.id %}'>
-                         View Details
-                     </a>
+                         <a style = "color:red;"href = '{% url "teacher_delete" teacher.id %}'>
+                             Delete
+                         </a>
 
-                 </td>
-                 <td style="border: 1px solid black;">
-                <a href = '{% url "teacher_update" teacher.id %}'>
-                         Update
-                     </a>
-                 </td>
-                 <td style="border: 1px solid black;">
-                     <a href = '{% url "teacher_delete" teacher.id %}'>
-                         Delete
-                     </a>
+                </div>
+            </td>
+            <td>{{teacher.age}}</td>
+            <td >{{teacher.qualification}}</td>
+            <td >{{teacher.phone}}</td>
 
-                 </td>
              </tr>
             {% endfor %}
         </table>
 
     </div>
-
+        <div class="buttons">
         <a href = "{% url 'teacher_form' %}">
-            <button>ADD</button>
+            <button type="button" class="btn btn-primary">ADD</button>
         </a>
     <a href = "{% url 'teacher_deleteall' %}">
-            <button>Delete All</button>
+            <button type="button" class="btn btn-danger">Delete All</button>
         </a>
+        </div>
     <br>
     <br>
-    <form method = 'POST' action = '{% url "index" %}'>
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type = "submit"> Search & Sort</button>
-    </form>
+
 </div>
 
-<div id="students" style = "float:right;">
-    <h6>Students</h6>
-    <div style="display:block; height: 300px; overflow: scroll;">
-    <table style="width:100%;border: 1px solid black;">
-         <tr style="border: 1px solid black;" >
-        <th style="border: 1px solid black;">Name</th>
-        <th style="border: 1px solid black;">Age</th>
-        <th style="border: 1px solid black;">Class</th>
-        <th style="border: 1px solid black;">Phone Number</th>
-             <th style="border: 1px solid black;">Address</th>
+<div id="students" >
+    <h5>Students Table</h5>
+    <div >
+    <table >
+         <tr >
+        <th >Name</th>
+        <th >Age</th>
+        <th>Class</th>
+        <th >Phone Number</th>
+             <th >Address</th>
+
          </tr>
     {% for student in students %}
-             <tr style="border: 1px solid black;" >
-            <td style="border: 1px solid black;">{{student.name}}</td>
-            <td style="border: 1px solid black;">{{student.age}}</td>
-            <td style="border: 1px solid black;">{{student.grade}}</td>
-            <td style="border: 1px solid black;">{{student.phone}}</td>
-                 <td style="border: 1px solid black;">{{student.address}}</td>
-                 <td style="border: 1px solid black;">
+             <tr >
+            <td style="text-align:left;">{{student.name}} <br>
+                <div class="actionbuttons">
 
-                     <a href = '{% url "student_detail" student.id %}'>
-                         View Details
-                     </a>
+                         <a href = '{% url "student_detail" student.id %}'>
+                             View Details
+                         </a>
 
-                 </td>
-                 <td style="border: 1px solid black;">
-                <a href = '{% url "student_update" student.id %}'>
-                         Update
-                     </a>
-                 </td>
-                 <td style="border: 1px solid black;">
-                     <a href = '{% url "student_delete" student.id %}'>
-                         Delete
-                     </a>
-                 </td>
+
+                     |
+                    <a href = '{% url "student_update" student.id %}'>
+                             Update
+                         </a>
+                    |
+                         <a style="color:red;" href = '{% url "student_delete" student.id %}'>
+                             Delete
+                         </a>
+                </div>
+            </td>
+            <td>{{student.age}} </td>
+            <td >{{student.grade}}</td>
+            <td >{{student.phone}}</td>
+                 <td >{{student.address}}</td>
+
              </tr>
             {% endfor %}
     </table>
     </div>
-    <div id = "buttons" style="float:right;">
+    <div class="buttons" >
     <a href = "{% url 'student_form' %}">
-            <button>ADD</button>
+            <button type="button" class="btn btn-primary">ADD</button>
         </a>
     <a href = "{% url 'student_deleteall' %}">
-            <button>Delete All</button>
+            <button type="button" class="btn btn-danger">Delete All</button>
         </a>
     </div>
     </div>
-</div>
+
 <br>
 <br>
-<div id="class" style = "clear:both; width:50%; margin: auto;">
-    <h6>Class</h6>
-    <div style="display:block; width:50%; height: 300px; overflow: scroll; ">
-    <table style="width:100%;border: 1px solid black;">
-         <tr style="border: 1px solid black;" >
-        <th style="border: 1px solid black;">Class</th>
-        <th style="border: 1px solid black;">Section</th>
-        <th style="border: 1px solid black;">Teacher</th>
+<div id="class">
+    <h5>Class Table</h5>
+    <div>
+    <table >
+         <tr>
+        <th >Class</th>
+        <th >Section</th>
+        <th >Teacher</th>
+
          </tr>
 
 
     {% for class in classes %}
-        <tr style="border: 1px solid black;">
-        <td style="border: 1px solid black;">{{class.grade}}</td>
-        <td style="border: 1px solid black;">{{class.section}}</td>
-        <td style="border: 1px solid black;">{{class.teacher}}</td>
-            <td style="border: 1px solid black;">
+        <tr >
+        <td style="text-align:left;">{{class.grade}} <br>
+            <div class="actionbuttons">
+
 
                     <a href = '{% url "class_detail" class.id %}'>
                          View Details
                      </a>
-            </td>
-            <td style="border: 1px solid black;">
+
+            |
                 <a href = '{% url "class_update" class.id %}'>
                          Update
                      </a>
-                 </td>
-            <td style="border: 1px solid black;">
-                <a href = '{% url "class_delete" class.id %}'>
+
+           |
+                <a style="color:red;" href = '{% url "class_delete" class.id %}'>
                          Delete
                      </a>
-                 </td>
+
+
+
+            </div>
+
+        </td>
+
+        <td >{{class.section}}</td>
+        <td >{{class.teacher}}</td>
+
          </tr>
         {% endfor %}
     </table>
     </div>
 
-
+    <div class="buttons">
     <a href = "{% url 'class_form' %}">
-            <button>ADD</button>
+            <button type="button" class="btn btn-primary">ADD</button>
         </a>
     <a href = "{% url 'class_deleteall' %}">
-            <button>Delete All</button>
+            <button type="button" class="btn btn-danger">Delete All</button>
         </a>
+    </div>
 </div>
-
+-->
 {% endblock %}

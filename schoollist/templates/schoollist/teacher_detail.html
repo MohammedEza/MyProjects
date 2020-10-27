@@ -1,17 +1,33 @@
 {% extends 'schoollist\base.html' %}
 
 {% block tables %}
-<div style="width:25%; margin:auto;">
-    Teacher Name: {{teacher.name}}
-    <br>
-    Age: {{teacher.age}}
-    <br>
-    Qualification: {{teacher.qualification}}
-    <br>
-    Phone Number: {{teacher.phone}}
-    <br>
-    <br>
-    Photo:  <img src ="{{ teacher.image.url }}" alt="didnt load" height="200" width="200">
+<div style="padding: 10px;">
+    <a href = "{% url 'teachertable' %}">
+        <button type="button" class="btn btn-dark">Go Back</button>
+    </a>
+</div>
+<div style="width:50%; margin:auto;">
+    <table style="width:100%;">
+        <tr>
+            <th colspan="2">Teacher Details</th>
+        </tr>
+        <tr>
+            <td><b>Name</b></td> <td>{{teacher.name}}</td>
+        </tr>
+         <tr>
+            <td><b>Age</b></td> <td>{{teacher.age}}</td>
+        </tr>
+         <tr>
+            <td><b>Qualification</b></td> <td>{{teacher.qualification}}</td>
+        </tr>
+         <tr>
+            <td><b>Phone</b></td> <td>{{teacher.phone}}</td>
+        </tr>
+         <tr>
+            <td><b>Image</b></td> <td><img src ="{{ teacher.image.url }}" alt="didnt load" height="200" width="200"></td>
+        </tr>
+
+    </table>
 
 </div>
 {% endblock %}

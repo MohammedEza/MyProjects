@@ -1,5 +1,5 @@
 from django import forms
-from phonenumber_field.modelfields import PhoneNumberField
+
 from .models import teachers, grade, students
 
 """sectionChoices = [
@@ -67,5 +67,5 @@ class class_add_form (forms.ModelForm):
 
 
 class search_sort_form (forms.Form):
-    search = forms.CharField( label="", widget=forms.TextInput(attrs={'placeholder': 'Search by Name'}), required= False)
-    sort = forms.CharField(widget=forms.Select(choices=SortChoices))
+    search = forms.CharField( label="", widget=forms.TextInput(attrs={'placeholder': 'Search Name'}), required= False)
+    #sort = forms.CharField(widget=forms.Select(choices=SortChoices))

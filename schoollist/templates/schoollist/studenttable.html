@@ -1,0 +1,211 @@
+{% extends 'schoollist\base.html' %}
+
+
+{% block tables %}
+
+<br>
+<div id = "navbar">
+    <div style="float: left ;">
+        <h5 style = "margin:10px 10px;">
+            <span style="padding:0px 10px;"><a style = "color:#6B88FA ;" href="{% url 'teachertable' %}">Teachers</a></span>
+            <span style="padding:0px 10px; background:#D3D3D3; border-radius:5px;"><a style = "color :#6B88FA;" href="{% url 'studenttable' %}">Students</a></span>
+            <span style="padding:0px 10px;"><a style = "color:#6B88FA;" href="{% url 'classtable' %}">Classes</a></span>
+        </h5>
+    </div>
+    <!-- <a style = "color:red;" href ='#'>
+        <div style="float: right ;"><h5 style = "margin:10px 10px;">Logout</h5></div>
+    </a> -->
+
+</div>
+
+<div style="padding: 50px 10px;  ">
+    <a href = "{% url 'index' %}">
+        <button type="button" class="btn btn-dark">Go to Home</button>
+    </a>
+</div>
+<div id="students" >
+    <h5>Students Table</h5>
+    <form style="float:right;padding:10px;" method="post" action="{% url 'studenttable' %}">
+            {% csrf_token %}
+            {{form.search}}
+             <button type="Submit" class="btn btn-light">Search</button>
+        </form>
+    <div >
+    <table id ="studenttable">
+         <tr >
+        <th >Name <span class = "sortAsc"> &#916 </span> <span class = "sortDsc"> &#8711 </span></th>
+        <th >Age <span class = "sortAsc"> &#916 </span> <span class = "sortDsc"> &#8711 </span></th>
+        <th>Class </th>
+        <th >Phone Number</th>
+             <th >Address</th>
+
+         </tr>
+    {% for student in students %}
+             <tr >
+            <td style="text-align:left;">{{student.name}} <br>
+                <div class="actionbuttons">
+
+                         <a href = '{% url "student_detail" student.id %}'>
+                             View Details
+                         </a>
+
+
+                     |
+                    <a href = '{% url "student_update" student.id %}'>
+                             Update
+                         </a>
+                    |
+                         <a style="color:red;" href = '{% url "student_delete" student.id %}'>
+                             Delete
+                         </a>
+                </div>
+            </td>
+            <td>{{student.age}} </td>
+            <td >{{student.grade}}</td>
+            <td >{{student.phone}}</td>
+                 <td >{{student.address}}</td>
+
+             </tr>
+            {% endfor %}
+    </table>
+        <div style="text-align:center">
+            {% if students.has_previous %}
+            <a href = "{% url 'studenttable' %}?page={{students.previous_page_number}}"> < Previous Page </a>
+            {% endif %}
+            {% if students.has_next %}
+            <a href = "{% url 'studenttable' %}?page={{students.next_page_number}} "> Next Page > </a>
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="buttons" >
+    <a href = "{% url 'student_form' %}">
+            <button type="button" class="btn btn-primary">ADD</button>
+        </a>
+    <a href = "{% url 'student_deleteall' %}">
+            <button type="button" class="btn btn-danger">Delete All</button>
+        </a>
+    </div>
+    </div>
+    <script>
+       
+       
+Asc = document.getElementsByClassName("sortAsc");
+Dsc = document.getElementsByClassName("sortDsc");
+
+
+for (let c = 0; c < Asc.length; c ++){
+
+    Asc[c].addEventListener('click', item(c))
+    
+
+
+}
+
+function item(c){
+
+    return function(){
+        console.log(c)
+        sortTableAsc(c)
+    }
+}
+
+
+for (let d = 0; d < Dsc.length; d ++){
+
+Dsc[d].addEventListener('click', itemd(d))
+
+}
+
+function itemd(d){
+
+return function(){
+    console.log(d)
+    sortTableDsc(d)
+}
+}
+
+function sortTableAsc(c) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("studenttable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[c];
+      y = rows[i + 1].getElementsByTagName("TD")[c];
+      //check if the two rows should switch place:
+      if (x.innerHTML > y.innerHTML) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+      /*else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()){
+            console.log("came here")
+            shouldSwitch = true;
+            break;
+           
+        }*/
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+function sortTableDsc(d) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("studenttable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[d];
+      y = rows[i + 1].getElementsByTagName("TD")[d];
+      //check if the two rows should switch place:
+      if (x.innerHTML < y.innerHTML) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+      /*else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()){
+            console.log("came here")
+            shouldSwitch = true;
+            break;
+           
+        }*/
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+    </script>
+
+{% endblock %}

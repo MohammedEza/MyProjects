@@ -1,0 +1,93 @@
+{% extends 'schoollist\base.html' %}
+
+
+{% block tables %}
+
+<br>
+<div id = "navbar">
+    <div style="float: left ;">
+        <h5 style = "margin:10px 10px;">
+            <span style="padding:0px 10px;"><a style = "color:#6B88FA ;" href="{% url 'teachertable' %}">Teachers</a></span>
+            <span style="padding:0px 10px;"><a style = "color :#6B88FA;" href="{% url 'studenttable' %}">Students</a></span>
+            <span style="padding:0px 10px; background:#D3D3D3; border-radius:5px;;"><a style = "color:#6B88FA;" href="{% url 'classtable' %}">Classes</a></span>
+        </h5>
+    </div>
+    <!-- <a style = "color:red;" href ='#'>
+        <div style="float: right ;"><h5 style = "margin:10px 10px;">Logout</h5></div>
+    </a> -->
+
+</div>
+
+<div style="padding: 50px 10px;  ">
+    <a href = "{% url 'index' %}">
+        <button type="button" class="btn btn-dark">Go to Home</button>
+    </a>
+</div>
+
+<div id="class">
+    <h5>Class Table</h5>
+    <div>
+    <table >
+         <tr>
+        <th >Class</th>
+        <th >Section</th>
+        <th >Teacher</th>
+
+         </tr>
+
+
+    {% for class in classes %}
+        <tr >
+        <td style="text-align:left;">{{class.grade}} <br>
+            <div class="actionbuttons">
+
+
+                    <a href = '{% url "class_detail" class.id %}'>
+                         View Details
+                     </a>
+
+            |
+                <a href = '{% url "class_update" class.id %}'>
+                         Update
+                     </a>
+
+           |
+                <a style="color:red;" href = '{% url "class_delete" class.id %}'>
+                         Delete
+                     </a>
+
+
+
+            </div>
+
+        </td>
+
+        <td >{{class.section}}</td>
+        <td >{{class.teacher}}</td>
+
+         </tr>
+        {% endfor %}
+    </table>
+        <div style="text-align:center">
+            {% if classes.has_previous %}
+            <a href = "{% url 'classtable' %}?page={{classes.previous_page_number}}"> < Previous Page </a>
+            {% endif %}
+            {% if classes.has_next %}
+            <a href = "{% url 'classtable' %}?page={{classes.next_page_number}} "> Next Page > </a>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <div class="buttons">
+    <a style="text-decoration:none;" href = "{% url 'class_form' %}">
+            <button type="button" class="btn btn-primary">ADD</button>
+        </a>
+    <a href = "{% url 'class_deleteall' %}">
+            <button type="button" class="btn btn-danger">Delete All</button>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

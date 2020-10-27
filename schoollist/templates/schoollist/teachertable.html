@@ -1,0 +1,167 @@
+{% extends 'schoollist\base.html' %}
+
+
+{% block tables %}
+
+<br>
+<div id = "navbar">
+    <div style="float: left ;">
+        <h5 style = "margin:10px 10px;">
+            <span style="padding:0px 10px; background:#D3D3D3; border-radius:5px;"><a style = "color:#6B88FA ;" href="{% url 'teachertable' %}">Teachers</a></span>
+            <span style="padding:0px 10px;"><a style = "color :#6B88FA;" href="{% url 'studenttable' %}">Students</a></span>
+            <span style="padding:0px 10px;"><a style = "color:#6B88FA;" href="{% url 'classtable' %}">Classes</a></span>
+        </h5>
+    </div>
+    <!-- <a style = "color:red;" href ='#'>
+        <div style="float: right ;"><h5 style = "margin:10px 10px;">Logout</h5></div>
+    </a> -->
+
+</div>
+
+<div style="padding: 50px 10px;  ">
+    <a href = "{% url 'index' %}">
+        <button type="button" class="btn btn-dark">Go to Home</button>
+    </a>
+</div>
+
+<div id="teachers" >
+    <h5>Teachers Table</h5>
+
+        <form style="float:right;padding:10px;" method="get" action="{% url 'teachertable' %}">
+            {% csrf_token %}
+            {{form.search}}
+             <button type="Submit" class="btn btn-light">Search</button>
+        </form>
+        <div>
+            <a style="float:right;padding:10px;" href="{% url 'teachertable' %}">Reset Filters</a>
+        </div>
+
+    <div >
+        <table id="teacherTable">
+             <tr  >
+                 <th >
+                     {% if sort_key == 'name' %}
+                        {% if search == '' %}
+                            <a  href="{{ request.build_absolute_uri }}?&sort=-name"> Name &#916</a>
+                        {% else %}
+                            <a  href="{{ request.build_absolute_uri }}&sort=-name"> Name &#916 </a>
+                        {% endif %}
+                     {% elif sort_key == '-name' %}
+                        {% if search == '' %}
+                            <a  href="{{ request.build_absolute_uri }}?&sort=name">Name &#8711</a>
+                        {% else %}
+                            <a  href="{{ request.build_absolute_uri }}&sort=name"> Name &#8711</a>
+                        {% endif %}
+                     {% else %}
+                        {% if search == '' %}
+                            <a  href="{{ request.build_absolute_uri }}?&sort=name"> Name</a>
+                        {% else %}
+                            <a  href="{{ request.build_absolute_uri }}&sort=name"> Name</a>
+                        {% endif %}
+                     {% endif %}
+
+                 </th>
+            <th >
+                {% if sort_key == 'age' %}
+                        {% if search == '' %}
+                            <a  href="{{ request.build_absolute_uri }}?&sort=-age"> Age &#916</a>
+                        {% else %}
+                            <a  href="{{ request.build_absolute_uri }}&sort=-age"> Age &#916</a>
+                        {% endif %}
+                {% elif sort_key == '-age' %}
+                        {% if search == '' %}
+                            <a  href="{{ request.build_absolute_uri }}?&sort=age"> Age &#8711</a>
+                        {% else %}
+                            <a  href="{{ request.build_absolute_uri }}&sort=age"> Age &#8711</a>
+                        {% endif %}
+                {% else %}
+                        {% if search == '' %}
+                            <a  href="{{ request.build_absolute_uri }}?&sort=age"> Age</a>
+                        {% else %}
+                            <a  href="{{ request.build_absolute_uri }}&sort=age"> Age</a>
+                        {% endif %}
+                {% endif %}
+
+            </th>
+            <th>Qualification </th>
+            <th >Phone Number </th>
+
+             </tr>
+            {% for teacher in teachers %}
+             <tr  >
+            <td style="text-align:left;">{{teacher.name}} <br>
+                <div class = "actionbuttons">
+
+                         <a href = '{% url "image" teacher.id %}'>
+                             View Image
+                         </a>
+                            |
+                         <a href = '{% url "teacher_detail" teacher.id %}'>
+                             View Details
+                         </a>
+                            |
+                    <a href = '{% url "teacher_update" teacher.id %}'>
+                             Update
+                         </a>
+                            |
+
+                         <a style = "color:red;"href = '{% url "teacher_delete" teacher.id %}'>
+                             Delete
+                         </a>
+
+                </div>
+            </td>
+            <td>{{teacher.age}}</td>
+            <td >{{teacher.qualification}}</td>
+            <td >{{teacher.phone}}</td>
+
+             </tr>
+            {% endfor %}
+        </table>
+        
+        <div style="text-align:center">
+            {% if teachers.has_previous %}
+            <a href = "{% url 'teachertable' %}?page={{teachers.previous_page_number}}"> < Previous Page </a>
+            {% endif %}
+            {% if teachers.has_next %}
+            <a href = "{% url 'teachertable' %}?page={{teachers.next_page_number}} "> Next Page > </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+        <div class="buttons">
+        <a style="text-decoration:none;" href = "{% url 'teacher_form' %}">
+            <button type="button" class="btn btn-primary">ADD</button>
+        </a>
+    <a href = "{% url 'teacher_deleteall' %}">
+            <button type="button" class="btn btn-danger">Delete All</button>
+        </a>
+        </div>
+    <br>
+    <br>
+
+</div>
+
+<script>
+
+$(document).ready(function(){
+    console.log("here");
+     $("#nameZtoA").hide();
+
+
+  $("#nameAtoZ").click(function(){
+    $("#nameAtoZ").hide();
+    $("#nameZtoA").show();
+  });
+  $("#nameZtoA").click(function(){
+    $("#nameZtoA").hide();
+    $("#nameAtoZ").show();
+  });
+});
+
+
+</script>
+
+
+{% endblock %}

@@ -3,6 +3,9 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name = 'index'),
+    path('teacher-table', views.teacher_table, name="teachertable"),
+    path('student-table', views.student_table, name="studenttable"),
+    path('class-table',views.class_table, name ="classtable"),
     path('teacher-add',views.teachers_add, name = 'teacher_form'),
     path('student-add',views.students_add, name = 'student_form'),
     path('class-add',views.class_add, name = 'class_form'),
@@ -18,5 +21,6 @@ urlpatterns = [
     path('student-detail/<int:id>',views.student_detail, name= 'student_detail'),
     path('class-update/<int:id>',views.class_update, name= 'class_update'),
     path('teacher-update/<int:id>',views.teacher_update, name= 'teacher_update'),
-    path('student-update/<int:id>',views.student_update, name= 'student_update')
+    path('student-update/<int:id>',views.student_update, name= 'student_update'),
+    path('logout', views.userlogout, name = "logout")
 ]

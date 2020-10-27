@@ -2,11 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Teacher Image</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>{{teacher.name}}</title>
+    <style>
+        img {
+        position : absolute;
+        top: 25%;
+
+
+        left:40%;
+
+
+
+        }
+
+    </style>
 </head>
-<body>
-<div style = "width:25%; margin:auto;">
-<img src ="{{ teacher.image.url }}" alt="No Image Provided" height="200" width="200">
+<body style="background: rgb(142,245,255);
+    background: linear-gradient(90deg, rgba(142,245,255,1) 0%, rgba(32,208,147,1) 50%, rgba(137,239,255,1) 100%);">
+<div style="padding: 10px;">
+    <a href = "{% url 'teachertable' %}">
+    <button type="button" class="btn btn-dark">Go Back</button>
+    </a>
 </div>
+<img src ="{{ teacher.image.url }}" alt="No Image Provided" height="300" width="300">
+
+
 </body>
 </html>
